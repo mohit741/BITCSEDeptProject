@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>
+			CSE Department
+		</title>
+		<link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="{% static "css/base_style.css"%}" />
+	</head>
+	<body>
+		<div id="bg2">
+			<img src="{% static "images/banner.png"%}" alt="BIT, Mesra" style="margin: 20px 20px">
+			<img src="{% static "images/cse.png"%}" alt="CSE" height="70px" width="220px" style="float: right; padding: 0 20px 20px 0; margin: 30px 50px">
+		</div>
+		<div id="bg1"> </div>
+        <div id="content">
+            {%block content%}
+	
+			{%endblock%}
+        </div>
+		<div id="copyright">
+			&copy; Your Sitename. Design by Fotogrph.
+		</div>
+	</body>
+</html>
