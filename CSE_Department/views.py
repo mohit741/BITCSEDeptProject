@@ -16,6 +16,8 @@ def login_view(request):
 
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('/profile')
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
@@ -23,32 +25,27 @@ def user_login(request):
         login(request, user)
         return redirect('/profile', {'user': user})
     else:
-        args = {'err': 'User credentials not valid!'}
-        return render(request, 'registration/login.html', args)
+        return render(request, 'registration/login.html', {'err': 'User credentials not valid!'})
 
 
 def register_user(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        # form2 = RegForm(request.POST, instance=request.user.Profile)
-        if user_form.is_valid():  # and form2.is_valid():
+        details_form = RegForm(request.POST)
+        if user_form.is_valid():
             user_form.save()
-            # form2.save()
             username = user_form.cleaned_data.get('username')
             raw_password = user_form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
+            profile = Profile.objects.get(user=user)
+            details_form = RegForm(request.POST, instance=profile)
+            details_form.save()
             login(request, user)
             return redirect('/profile')
     else:
         user_form = UserForm()
-        # form2 = RegForm()
-    return render(request, 'register.html', {'user_form': user_form})
-
-    # if all((profile_form.is_valid(), address_form.is_valid())):
-    #   profile = profile_form.save()
-    #    address = address_form.save(commit=False)
-    #   address.printer_profile = profile
-    #  address.save()
+        details_form = RegForm()
+    return render(request, 'register.html', {'user_form': user_form, 'details_form': details_form})
 
 
 def show_profile(request):

@@ -11,7 +11,8 @@ class TestProfileModel(TestCase):
         )
         self.assertIsInstance(user.Profile, models.Profile)
         user.save()
+        user.Profile.dept = "IT"
         print(user.username)
         print(user.Profile)
-        print(user.Profile.phone)
+        print(user.Profile.dept)
         self.assertIsInstance(user.Profile, models.Profile)
