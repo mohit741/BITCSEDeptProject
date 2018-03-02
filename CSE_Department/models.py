@@ -12,12 +12,15 @@ class Profile(models.Model):
     name = models.CharField(max_length=50, default='dummy')
     dept = models.CharField(max_length=20, default='CSE')
     phone = models.CharField(max_length=15, default='1234567890')
-
+    desgn = models.CharField(max_length=20, default='staff')
     objects = ProfileManager()
 
     @property
     def username(self):
         return self.user.username
+
+    def status(self):
+        return self.desgn
 
     class Meta:
         ordering = ("user",)

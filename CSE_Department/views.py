@@ -48,9 +48,26 @@ def register_user(request):
     return render(request, 'register.html', {'user_form': user_form, 'details_form': details_form})
 
 
+@login_required()
 def show_profile(request):
     if request.user.is_authenticated:
         return render(request, 'profile.html')
+    else:
+        return redirect('/login')
+
+
+def update_profile(request):
+    if request.user.is_authenticated:
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        if request.method == 'POST':
+            details_form = RegForm(request.POST, instance=profile)
+            if details_form.is_valid():
+                details_form.save()
+                return redirect('/profile')
+        else:
+            details_form = RegForm(instance=profile)
+            return render(request, 'update_profile.html', {'details_form': details_form, 'user': user})
     else:
         return redirect('/login')
 

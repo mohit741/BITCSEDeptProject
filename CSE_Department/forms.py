@@ -29,13 +29,17 @@ class RegForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}))
     dept = forms.CharField(label='Department',
                            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Department'}))
-    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}))
+    desgn = forms.CharField(label='Designation',
+                            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Designation'}))
+    phone = forms.CharField(max_length=10,
+                            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}))
 
     class Meta:
         model = Profile
         fields = (
             'name',
             'dept',
+            'desgn',
             'phone',
         )
 
@@ -43,8 +47,8 @@ class RegForm(forms.ModelForm):
         profile = super(RegForm, self).save(commit=False)
         profile.name = self.cleaned_data["name"]
         profile.dept = self.cleaned_data["dept"]
+        profile.desgn = self.cleaned_data["desgn"]
         profile.phone = self.cleaned_data["phone"]
         if commit:
             profile.save()
         return profile
-

@@ -1,32 +1,54 @@
-<!DOCTYPE html>
+{% extends "profile_base.html" %}
 {% load static %}
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>
-			CSE Department
-		</title>
-		<link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="{% static "css/base_style.css"%}" />
-	</head>
-	<body>
-		<div id="bg2">
-			<img src="{% static "images/banner.png"%}" alt="BIT, Mesra" style="margin: 20px 20px">
-			<img src="{% static "images/cse.png"%}" alt="CSE" height="70px" width="220px" style="float: right; padding: 0 20px 20px 0; margin: 30px 50px">
-		</div>
-		<div id="bg1"> </div>
-        <div id="content">
-            {%block content%}
-			{%if user.is_authenticated%}
-			{{user.Profile}}
-                <a href="{% url "logout_user" %}">Log Out!</a>
-			{%endif%}
-			{%endblock%}
+{% block childcontent %}
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static 'style_profile.css' %}" rel="stylesheet">
+    {% if user.is_authenticated %}
+        <div class="container" style="margin-left: -400%">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ user.Profile.name }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td>Department:</td>
+                                        <td>{{ user.Profile.dept }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Designation:</td>
+                                        <td>{{ user.Profile.desgn }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone Number</td>
+                                        <td>{{ user.Profile.phone }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <a href="#" class="btn btn-primary" style="margin-top: 5%">Research Papers / Publications</a>
+
+                                <a href="#" class="btn btn-primary" style="margin-top: 2%">Conferences / Seminars</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="pull-right">
+
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-		<div id="copyright">
-			&copy; Your Sitename. Design by Fotogrph.
-		</div>
-	</body>
-</html>
+    {% endif %}
+{% endblock childcontent %}
