@@ -7,12 +7,12 @@
     <table name="CSE_Department_conferencesattended" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="authors" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="paperTitle" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="duration" sqlType="BIGINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="place" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="paperTitle" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_conferencesattended_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_conferencesattended_user_id_25ec894a" unique="true" columns="user_id"/>
@@ -21,10 +21,10 @@
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="duration" sqlType="BIGINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
-      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="fundingAgency" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="role" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_conferencesorg_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_conferencesorg_user_id_4060ef49" unique="true" columns="user_id"/>
@@ -37,9 +37,9 @@
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="impactFac" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="volume" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="year" sqlType="INTEGER UNSIGNED" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_otherjournals_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_otherjournals_user_id_477ed47f" unique="true" columns="user_id"/>
@@ -52,9 +52,9 @@
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="impactFac" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="volume" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="year" sqlType="INTEGER UNSIGNED" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_paidscopus_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_paidscopus_user_id_f7baa591" unique="true" columns="user_id"/>
@@ -77,9 +77,9 @@
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="impactFac" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="volume" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="year" sqlType="INTEGER UNSIGNED" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_scijournals_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_scijournals_user_id_abf001c7" unique="true" columns="user_id"/>
@@ -87,12 +87,12 @@
     <table name="CSE_Department_seminarsattended" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="authors" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="paperTitle" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="duration" sqlType="BIGINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="place" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="paperTitle" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_seminarsattended_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_seminarsattended_user_id_8f144fa2" unique="true" columns="user_id"/>
@@ -101,10 +101,10 @@
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="duration" sqlType="BIGINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
-      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="fundingAgency" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="role" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_seminarsorg_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_seminarsorg_user_id_27763b3d" unique="true" columns="user_id"/>
@@ -114,8 +114,8 @@
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="duration" sqlType="BIGINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="place" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_trainingprogattended_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_trainingprogattended_user_id_50b09e61" unique="true" columns="user_id"/>
@@ -128,9 +128,9 @@
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="impactFac" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="volume" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="year" sqlType="INTEGER UNSIGNED" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="pp" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_unpaidscopus_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_unpaidscopus_user_id_cc2e6807" unique="true" columns="user_id"/>
@@ -140,8 +140,8 @@
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="duration" sqlType="BIGINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="place" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_workshopsattended_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_workshopsattended_user_id_96db1488" unique="true" columns="user_id"/>
@@ -150,10 +150,10 @@
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="name" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="duration" sqlType="BIGINT" precision="0" scale="-1" nullable="false" jdbcType="4"/>
-      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="fundingAgency" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="role" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="orgInstitute" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_CSE_Department_workshopsorg_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="CSE_Department_workshopsorg_user_id_75811d36" unique="true" columns="user_id"/>
@@ -220,6 +220,12 @@
       <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_auth_user_user_permissions_2" table="auth_user_user_permissions" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_django_admin_log_1" table="django_admin_log" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_conferencesattended_1" table="CSE_Department_conferencesattended" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_conferencesorg_1" table="CSE_Department_conferencesorg" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_otherjournals_1" table="CSE_Department_otherjournals" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_paidscopus_1" table="CSE_Department_paidscopus" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_profile_1" table="CSE_Department_profile" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_scijournals_1" table="CSE_Department_scijournals" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_seminarsattended_1" table="CSE_Department_seminarsattended" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_seminarsorg_1" table="CSE_Department_seminarsorg" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_trainingprogattended_1" table="CSE_Department_trainingprogattended" schema="" catalog="" columns="user_id"/>

@@ -8,11 +8,12 @@ from .managers import ProfileManager
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='Profile')
-    name = models.CharField(max_length=50, default='dummy')
-    dept = models.CharField(max_length=20, default='CSE')
-    phone = models.CharField(max_length=15, default='1234567890')
-    desgn = models.CharField(max_length=20, default='staff')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='Profile',
+                                verbose_name='Employee ID')
+    name = models.CharField(max_length=50, default='dummy', verbose_name='Name')
+    dept = models.CharField(max_length=20, default='CSE', verbose_name='Department')
+    phone = models.CharField(max_length=15, default='1234567890', verbose_name='Phone')
+    desgn = models.CharField(max_length=20, default='staff', verbose_name='Designation')
     objects = ProfileManager()
 
     @property
@@ -38,69 +39,69 @@ def create_profile_for_new_user(sender, created, instance, **kwargs):
 
 class SCIJournals(models.Model):
     authors = models.CharField(max_length=100)
-    corresAuthors = models.CharField(max_length=100)
-    paperTitle = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    impactFac = models.CharField(max_length=50)
+    corresAuthors = models.CharField(max_length=100, verbose_name='Corresponding Authors')
+    paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
+    name = models.CharField(max_length=50, verbose_name='Name')
+    impactFac = models.CharField(max_length=50, verbose_name='Impact Factor')
     volume = models.CharField(max_length=50)
-    pp = models.CharField(max_length=50)
+    pp = models.CharField(max_length=50, verbose_name='PP')
     year = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class UnpaidScopus(models.Model):
     authors = models.CharField(max_length=100)
-    corresAuthors = models.CharField(max_length=100)
-    paperTitle = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    impactFac = models.CharField(max_length=50)
+    corresAuthors = models.CharField(max_length=100, verbose_name='Corresponding Authors')
+    paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
+    name = models.CharField(max_length=50, verbose_name='Name')
+    impactFac = models.CharField(max_length=50, verbose_name='Impact Factor')
     volume = models.CharField(max_length=50)
-    pp = models.CharField(max_length=50)
+    pp = models.CharField(max_length=50, verbose_name='PP')
     year = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class PaidScopus(models.Model):
     authors = models.CharField(max_length=100)
-    corresAuthors = models.CharField(max_length=100)
-    paperTitle = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    impactFac = models.CharField(max_length=50)
+    corresAuthors = models.CharField(max_length=100, verbose_name='Corresponding Authors')
+    paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
+    name = models.CharField(max_length=50, verbose_name='Name')
+    impactFac = models.CharField(max_length=50, verbose_name='Impact Factor')
     volume = models.CharField(max_length=50)
-    pp = models.CharField(max_length=50)
+    pp = models.CharField(max_length=50, verbose_name='PP')
     year = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class OtherJournals(models.Model):
     authors = models.CharField(max_length=100)
-    corresAuthors = models.CharField(max_length=100)
-    paperTitle = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    impactFac = models.CharField(max_length=50)
+    corresAuthors = models.CharField(max_length=100, verbose_name='Corresponding Authors')
+    paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
+    name = models.CharField(max_length=50, verbose_name='Name')
+    impactFac = models.CharField(max_length=50, verbose_name='Impact Factor')
     volume = models.CharField(max_length=50)
-    pp = models.CharField(max_length=50)
+    pp = models.CharField(max_length=50, verbose_name='PP')
     year = models.PositiveIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class ConferencesAttended(models.Model):
     authors = models.CharField(max_length=100)
-    paperTitle = models.CharField(max_length=50)
+    paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
     name = models.CharField(max_length=50)
     duration = models.DurationField()
     place = models.CharField(max_length=100)
-    orgInstitute = models.CharField(max_length=50)
+    orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class SeminarsAttended(models.Model):
     authors = models.CharField(max_length=100)
-    paperTitle = models.CharField(max_length=50)
+    paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
     name = models.CharField(max_length=50)
     duration = models.DurationField()
     place = models.CharField(max_length=100)
-    orgInstitute = models.CharField(max_length=50)
+    orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
@@ -108,7 +109,7 @@ class WorkshopsAttended(models.Model):
     name = models.CharField(max_length=50)
     duration = models.DurationField()
     place = models.CharField(max_length=100)
-    orgInstitute = models.CharField(max_length=50)
+    orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
@@ -116,15 +117,15 @@ class TrainingProgAttended(models.Model):
     name = models.CharField(max_length=50)
     duration = models.DurationField()
     place = models.CharField(max_length=100)
-    orgInstitute = models.CharField(max_length=50)
+    orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class ConferencesOrg(models.Model):
     name = models.CharField(max_length=50)
     duration = models.DurationField()
-    orgInstitute = models.CharField(max_length=50)
-    fundingAgency = models.CharField(max_length=100)
+    orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
+    fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -132,8 +133,8 @@ class ConferencesOrg(models.Model):
 class WorkshopsOrg(models.Model):
     name = models.CharField(max_length=50)
     duration = models.DurationField()
-    orgInstitute = models.CharField(max_length=50)
-    fundingAgency = models.CharField(max_length=100)
+    orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
+    fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -141,7 +142,7 @@ class WorkshopsOrg(models.Model):
 class SeminarsOrg(models.Model):
     name = models.CharField(max_length=50)
     duration = models.DurationField()
-    orgInstitute = models.CharField(max_length=50)
-    fundingAgency = models.CharField(max_length=100)
+    orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
+    fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

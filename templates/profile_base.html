@@ -9,13 +9,15 @@
         <div class="container" >
             <div class="row">
                 <div class="col-md-3  toppad  pull-right col-md-offset-5 ">
+                    {% if not other_user %}
                     <A href="{% url 'update_profile' %}" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">Edit Profile</A>
+                    {% endif %}
                     <A style="margin-left: 5% " href="{% url "logout_user" %}" data-toggle="tooltip" type="button"
                        class="btn btn-sm btn-danger">Logout</A>
                     <br>
                     <br>
                     <p class=" text-info">{% now "jS F Y H:i" %}</p>
-                    <div >
+                    <div>
                         {% block childcontent %}
 
                         {% endblock childcontent %}
