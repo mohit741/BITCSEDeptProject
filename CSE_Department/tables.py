@@ -165,12 +165,18 @@ class ConferencesAttendedTable(tables.Table):
                                orderable=False, empty_values=(), verbose_name='')
 
     def render_edit(self, record):
+        sem_type = 'Conferences_Attended'
+        code = 0
         return mark_safe(
-            '<a href=' + reverse("edit_papers", args=[record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
+            '<a href=' + reverse("edit_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
 
     def render_delete(self, record):
+        sem_type = 'Conferences_Attended'
+        code = 0
         return mark_safe(
-            '<a href=' + reverse("delete_papers", args=[record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+            '<a href=' + reverse("delete_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = ConferencesAttended
@@ -192,12 +198,18 @@ class SeminarsAttendedTable(tables.Table):
                                orderable=False, empty_values=(), verbose_name='')
 
     def render_edit(self, record):
+        code = 1
+        sem_type = 'Seminars_Attended'
         return mark_safe(
-            '<a href=' + reverse("edit_papers", args=[record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
+            '<a href=' + reverse("edit_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
 
     def render_delete(self, record):
+        code = 1
+        sem_type = 'Seminars_Attended'
         return mark_safe(
-            '<a href=' + reverse("delete_papers", args=[record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+            '<a href=' + reverse("delete_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = SeminarsAttended
@@ -219,12 +231,18 @@ class WorkshopsAttendedTable(tables.Table):
                                orderable=False, empty_values=(), verbose_name='')
 
     def render_edit(self, record):
+        code = 2
+        sem_type = 'Workshops_Attended'
         return mark_safe(
-            '<a href=' + reverse("edit_papers", args=[record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
+            '<a href=' + reverse("edit_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
 
     def render_delete(self, record):
+        code = 2
+        sem_type = 'Workshops_Attended'
         return mark_safe(
-            '<a href=' + reverse("delete_papers", args=[record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+            '<a href=' + reverse("delete_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = WorkshopsAttended
@@ -244,12 +262,18 @@ class TrainingProgAttendedTable(tables.Table):
                                orderable=False, empty_values=(), verbose_name='')
 
     def render_edit(self, record):
+        code = 3
+        sem_type = 'Training_Programs_Attended'
         return mark_safe(
-            '<a href=' + reverse("edit_papers", args=[record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
+            '<a href=' + reverse("edit_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
 
     def render_delete(self, record):
+        code = 3
+        sem_type = 'Train_Programs_Attended'
         return mark_safe(
-            '<a href=' + reverse("delete_papers", args=[record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+            '<a href=' + reverse("delete_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = TrainingProgAttended
@@ -269,12 +293,18 @@ class ConferencesOrgTable(tables.Table):
                                orderable=False, empty_values=(), verbose_name='')
 
     def render_edit(self, record):
+        code = 4
+        sem_type = 'Conferences_Organised'
         return mark_safe(
-            '<a href=' + reverse("edit_papers", args=[record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
+            '<a href=' + reverse("edit_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
 
     def render_delete(self, record):
+        code = 4
+        sem_type = 'Conferences_Organised'
         return mark_safe(
-            '<a href=' + reverse("delete_papers", args=[record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+            '<a href=' + reverse("delete_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = ConferencesOrg
@@ -295,12 +325,18 @@ class WorkshopsOrgTable(tables.Table):
                                orderable=False, empty_values=(), verbose_name='')
 
     def render_edit(self, record):
+        code = 5
+        sem_type = 'Workshops_Organised'
         return mark_safe(
-            '<a href=' + reverse("edit_papers", args=[record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
+            '<a href=' + reverse("edit_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
 
     def render_delete(self, record):
+        code = 5
+        sem_type = 'Workshops_Organised'
         return mark_safe(
-            '<a href=' + reverse("delete_papers", args=[record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+            '<a href=' + reverse("delete_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = WorkshopsOrg
@@ -321,12 +357,18 @@ class SeminarsOrgTable(tables.Table):
                                orderable=False, empty_values=(), verbose_name='')
 
     def render_edit(self, record):
+        code = 6
+        sem_type = 'Seminars_Organised'
         return mark_safe(
-            '<a href=' + reverse("edit_papers", args=[record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
+            '<a href=' + reverse("edit_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-warning">Edit</a>')
 
     def render_delete(self, record):
+        code = 6
+        sem_type = 'Seminars_Organised'
         return mark_safe(
-            '<a href=' + reverse("delete_papers", args=[record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+            '<a href=' + reverse("delete_seminars",
+                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = SeminarsOrg

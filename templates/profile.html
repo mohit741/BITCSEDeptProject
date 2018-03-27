@@ -39,7 +39,7 @@
 
                                 <a href="{% url 'others_papers_view' user=other_user %}" class="btn btn-primary" style="margin-top: 5%">Research Papers / Publications</a>
 
-                                <a href="#" class="btn btn-primary" style="margin-top: 2%">Conferences / Seminars</a>
+                                <a href="{% url 'others_seminars_view' user=other_user %}" class="btn btn-primary" style="margin-top: 2%">Conferences / Seminars</a>
 
                             </div>
                         </div>
@@ -86,7 +86,7 @@
 
                                 <a href="{% url 'papers_view' %}" class="btn btn-primary" style="margin-top: 5%">Research Papers / Publications</a>
 
-                                <a href="#" class="btn btn-primary" style="margin-top: 2%">Conferences / Seminars</a>
+                                <a href="{% url 'seminars_view' %}" class="btn btn-primary" style="margin-top: 2%">Conferences / Seminars</a>
                                 <br>
                                 {% if request.user.is_staff %}
                                     <a href="{% url 'profiles_view' %}" class="btn btn-primary" style="margin-top: 2%">All Users</a>

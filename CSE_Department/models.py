@@ -89,7 +89,7 @@ class ConferencesAttended(models.Model):
     authors = models.CharField(max_length=100)
     paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
     name = models.CharField(max_length=50)
-    duration = models.DurationField()
+    duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -99,7 +99,7 @@ class SeminarsAttended(models.Model):
     authors = models.CharField(max_length=100)
     paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
     name = models.CharField(max_length=50)
-    duration = models.DurationField()
+    duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -107,7 +107,7 @@ class SeminarsAttended(models.Model):
 
 class WorkshopsAttended(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.DurationField()
+    duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -115,7 +115,7 @@ class WorkshopsAttended(models.Model):
 
 class TrainingProgAttended(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.DurationField()
+    duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -123,7 +123,7 @@ class TrainingProgAttended(models.Model):
 
 class ConferencesOrg(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.DurationField()
+    duration = models.IntegerField()
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
@@ -132,7 +132,7 @@ class ConferencesOrg(models.Model):
 
 class WorkshopsOrg(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.DurationField()
+    duration = models.IntegerField()
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
@@ -141,7 +141,7 @@ class WorkshopsOrg(models.Model):
 
 class SeminarsOrg(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.DurationField()
+    duration = models.IntegerField()
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
