@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% load render_table from django_tables2 %}
+{% block content %}
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static 'css/style_profile.css' %}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    {% if user.is_authenticated %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3  toppad  pull-right col-md-offset-5 ">
+                    <A href="{% url 'update_profile' %}" data-toggle="tooltip" type="button"
+                       class="btn btn-sm btn-warning">Edit Profile</A>
+                    <A style="margin-left: 5% " href="{% url "logout_user" %}" data-toggle="tooltip" type="button"
+                       class="btn btn-sm btn-danger">Logout</A>
+                    <br>
+                    <br>
+
+                    <p class=" text-info">{% now "jS F Y H:i" %}</p>
+
+                    <div>
+                        {% block childcontent %}
+                            <A href="{% url 'show_profile' %}" data-toggle="tooltip" type="button"
+                            class="btn btn-sm btn-success fa fa-arrow-left" style="margin-left: 20%"> Go Back</A>
+                            <br>
+                            <A href="{% url 'journals_filter_view' %}" data-toggle="tooltip" type="button"
+                            class="pull-left btn btn-sm btn-success fa fa-search" style="margin-left: -293%"> Filter Data</A>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="container" style="margin-left: -300%">
+                                <legend>SCI Journals</legend>
+                                <div class="row">
+                                    <div class="pull-left">
+                                        {% render_table table.sci %}
+                                    </div>
+                                    <div style="margin-left: 90%">
+                                        <A href="{% url 'add_papers' paper_type='SCI' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-plus "> Add Paper</A>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container" style="margin-left: -300%">
+                                <legend>Unpaid Scopus</legend>
+                                <div class="row">
+                                    <div class="pull-left">
+                                        {% render_table table.up %}
+                                    </div>
+                                    <div style="margin-left: 90%">
+                                        <A href="{% url 'add_papers' paper_type='unpaid_scopus' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-plus "> Add Paper</A>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container" style="margin-left: -300%">
+                                <legend>Paid Scopus</legend>
+                                <div class="row">
+                                    <div class="pull-left">
+                                        {% render_table table.p %}
+                                    </div>
+                                    <div style="margin-left: 90%">
+                                        <A href="{% url 'add_papers' paper_type='paid_scopus' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-plus "> Add Paper</A>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container" style="margin-left: -300%">
+                                <legend>Other Journals</legend>
+                                <div class="row">
+                                    <div class="pull-left">
+                                        {% render_table table.oj %}
+                                    </div>
+                                    <div style="margin-left: 90%">
+                                        <A href="{% url 'add_papers' paper_type='other_journals' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-plus "> Add Paper</A>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        {% endblock childcontent %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

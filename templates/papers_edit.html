@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static 'css/style_profile.css' %}" rel="stylesheet">
+    {% if user.is_authenticated %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3  toppad  pull-right col-md-offset-5 ">
+                    <A href="{% url 'show_profile' %}" data-toggle="tooltip" type="button"
+                       class="btn btn-sm btn-warning">Go Back</A>
+                    <A style="margin-left: 5% " href="{% url "logout_user" %}" data-toggle="tooltip" type="button"
+                       class="btn btn-sm btn-danger">Logout</A>
+                    <br>
+                    <br>
+
+                    <p class=" text-info">{% now "jS F Y H:i" %}</p>
+
+                    <div>
+                        {% block childcontent %}
+                            <div class="container" style="margin-left: -300%">
+                                <div class="row">
+                                    <div class="col-md-10 ">
+                                        <form class="form-horizontal" method="POST">{% csrf_token %}
+                                            <fieldset>
+                                                <legend>Add Paper</legend>
+                                                {% for error in papers_form.non_field_errors %}
+                                                    <div class="form-group has-errors text-danger small">
+                                                        {{ error }}
+                                                    </div>
+                                                {% endfor %}
+                                                {% for field in papers_form %}
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                {{ field }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group has-errors text-danger small">
+                                                            {{ field.errors }}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label"></label>
+
+                                                    <div class="col-md-4">
+                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                        <a href="{% url 'add_papers' paper_type=paper_type %}" class="btn btn-danger"
+                                                           style="margin-left:30px">Clear</a>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        {% endblock childcontent %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
