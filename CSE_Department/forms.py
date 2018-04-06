@@ -307,7 +307,7 @@ class PapersFilterForm(forms.Form):
                            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
     year1 = forms.CharField(label='Years', required=False,
                             widget=forms.Textarea(attrs={'rows': 2, 'class': 'form-control',
-                                                         'placeholder': "Use ',' for discrete years or '-' for range"}))
+                                                         'placeholder': "Use ',' for discrete years or '-' for range ex- 1999-2005 or 2017,1990 or 2016"}))
 
 
 class SemFilterForm(forms.Form):

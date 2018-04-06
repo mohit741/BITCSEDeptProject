@@ -443,7 +443,7 @@ def papers_filter_form_view(request):
             name = request.POST.get('sci-name')
             paperTitle = request.POST.get('sci-paperTitle')
             year = request.POST.get('sci-year1')
-            qs = getQuerySet(SCIJournals, authors, corresAuthors, paperTitle, name, year)
+            qs = getPapersQuerySet(SCIJournals, authors, corresAuthors, paperTitle, name, year)
             sciTable = SCITable(qs)
             RequestConfig(request).configure(sciTable)
             tables['sciTable'] = sciTable
@@ -453,7 +453,7 @@ def papers_filter_form_view(request):
             name = request.POST.get('ups-name')
             paperTitle = request.POST.get('ups-paperTitle')
             year = request.POST.get('ups-year1')
-            qs = getQuerySet(UnpaidScopus, authors, corresAuthors, paperTitle, name, year)
+            qs = getPapersQuerySet(UnpaidScopus, authors, corresAuthors, paperTitle, name, year)
             upsTable = UnpaidScopusTable(qs)
             RequestConfig(request).configure(upsTable)
             tables['upsTable'] = upsTable
@@ -463,7 +463,7 @@ def papers_filter_form_view(request):
             name = request.POST.get('ps-name')
             paperTitle = request.POST.get('ps-paperTitle')
             year = request.POST.get('ps-year1')
-            qs = getQuerySet(PaidScopus, authors, corresAuthors, paperTitle, name, year)
+            qs = getPapersQuerySet(PaidScopus, authors, corresAuthors, paperTitle, name, year)
             psTable = PaidScopusTable(qs)
             RequestConfig(request).configure(psTable)
             tables['psTable'] = psTable
@@ -473,7 +473,7 @@ def papers_filter_form_view(request):
             name = request.POST.get('o-name')
             paperTitle = request.POST.get('o-paperTitle')
             year = request.POST.get('o-year1')
-            qs = getQuerySet(OtherJournals, authors, corresAuthors, paperTitle, name, year)
+            qs = getPapersQuerySet(OtherJournals, authors, corresAuthors, paperTitle, name, year)
             oTable = OtherJournalTable(qs)
             RequestConfig(request).configure(oTable)
             tables['oTable'] = oTable
@@ -542,7 +542,7 @@ def serve_filter_forms(request, options):
         request.session['so'] = False
 
 
-def getQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
+def getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
     q = Q(authors__icontains='dummy')
     if authors is not None:
         al = authors.split(' ')
@@ -558,12 +558,12 @@ def getQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
         n = paperTitle.split(' ')
         if n[0] != '':
             for i in n:
-                q = q | Q(name__icontains=i)
+                q = q | Q(paperTitle__icontains=i)
     if name is not None:
         pt = name.split(' ')
         if pt[0] != '':
             for i in pt:
-                q = q | Q(paperTitle__icontains=i)
+                q = q | Q(name__icontains=i)
     if ',' in year and year is not None:
         y = year.split(',')
         print(y)
@@ -583,9 +583,6 @@ def getQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
             q = q | (Q(year__gte=Y[0]) & Q(year__lte=Y[1]))
     elif len(year) == 4:
         Y = [int(year)]
-        q = q | Q(year__icontains=Y[0])
-    else:
-        Y = [2018]
         q = q | Q(year__icontains=Y[0])
     print(q)
     return obj.objects.filter(q)
