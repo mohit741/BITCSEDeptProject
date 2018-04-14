@@ -8,6 +8,10 @@ from django.shortcuts import render, redirect
 from .forms import *
 from .tables import *
 from django_tables2 import RequestConfig
+from django_tables2.export.export import TableExport
+
+t = SCITable(SCIJournals.objects.all())
+exporter = TableExport('csv', t, exclude_columns=('edit', 'delete'))
 
 
 # Create your views here.
@@ -108,6 +112,22 @@ def papers_view(request):
         oj = OtherJournalTable(OtherJournals.objects.filter(user=user))
         RequestConfig(request).configure(oj)
         table = {'sci': sci, 'up': up, 'p': p, 'oj': oj}
+        export_format_sci = request.GET.get('sci_export', None)
+        export_format_ps = request.GET.get('ps_export', None)
+        export_format_unp = request.GET.get('unp_export', None)
+        export_format_oj = request.GET.get('oj_export', None)
+        if TableExport.is_valid_format(export_format_sci):
+            exporter = TableExport(export_format_sci, sci, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_SCI.xlsx')
+        if TableExport.is_valid_format(export_format_ps):
+            exporter = TableExport(export_format_ps, p, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_PS.xlsx')
+        if TableExport.is_valid_format(export_format_unp):
+            exporter = TableExport(export_format_unp, up, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_UNP.xlsx')
+        if TableExport.is_valid_format(export_format_oj):
+            exporter = TableExport(export_format_oj, oj, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_OJ.xlsx')
         return render(request, 'papers_view.html', {'user': user, 'table': table})
     else:
         return redirect('/login')
@@ -115,6 +135,7 @@ def papers_view(request):
 
 def others_papers_view(request, user):
     if request.user.is_authenticated and request.user.is_staff:
+        other = user
         user = User.objects.get(username=user)
         sci = SCITable(SCIJournals.objects.filter(user=user))
         sci.exclude = ('edit', 'delete')
@@ -129,8 +150,24 @@ def others_papers_view(request, user):
         oj.exclude = ('edit', 'delete')
         RequestConfig(request).configure(oj)
         table = {'sci': sci, 'up': up, 'p': p, 'oj': oj}
+        export_format_sci = request.GET.get('sci_export', None)
+        export_format_ps = request.GET.get('ps_export', None)
+        export_format_unp = request.GET.get('unp_export', None)
+        export_format_oj = request.GET.get('oj_export', None)
+        if TableExport.is_valid_format(export_format_sci):
+            exporter = TableExport(export_format_sci, sci, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_SCI.xlsx')
+        if TableExport.is_valid_format(export_format_ps):
+            exporter = TableExport(export_format_ps, up, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_PS.xlsx')
+        if TableExport.is_valid_format(export_format_unp):
+            exporter = TableExport(export_format_unp, p, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_UNP.xlsx')
+        if TableExport.is_valid_format(export_format_oj):
+            exporter = TableExport(export_format_oj, oj, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_OJ.xlsx')
         user = request.user
-        return render(request, 'other_papers_view.html', {'user': user, 'table': table})
+        return render(request, 'other_papers_view.html', {'user': user, 'table': table, 'other': other})
     else:
         return redirect('/login')
 
@@ -249,6 +286,34 @@ def seminars_view(request, ):
         so = SeminarsOrgTable(SeminarsOrg.objects.filter(user=user))
         RequestConfig(request).configure(wo)
         table = {'ca': ca, 'sa': sa, 'wa': wa, 'tpa': tpa, 'co': co, 'wo': wo, 'so': so}
+        export_format_ca = request.GET.get('ca_export', None)
+        export_format_sa = request.GET.get('sa_export', None)
+        export_format_wa = request.GET.get('wa_export', None)
+        export_format_tpa = request.GET.get('tpa_export', None)
+        export_format_co = request.GET.get('co_export', None)
+        export_format_wo = request.GET.get('wo_export', None)
+        export_format_so = request.GET.get('so_export', None)
+        if TableExport.is_valid_format(export_format_ca):
+            exporter = TableExport(export_format_ca, ca, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_CA.xlsx')
+        if TableExport.is_valid_format(export_format_sa):
+            exporter = TableExport(export_format_sa, sa, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_SA.xlsx')
+        if TableExport.is_valid_format(export_format_wa):
+            exporter = TableExport(export_format_wa, wa, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_WA.xlsx')
+        if TableExport.is_valid_format(export_format_tpa):
+            exporter = TableExport(export_format_tpa, tpa, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_TPA.xlsx')
+        if TableExport.is_valid_format(export_format_co):
+            exporter = TableExport(export_format_co, co, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_CO.xlsx')
+        if TableExport.is_valid_format(export_format_wo):
+            exporter = TableExport(export_format_wo, wo, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_WO.xlsx')
+        if TableExport.is_valid_format(export_format_so):
+            exporter = TableExport(export_format_so, so, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_SO.xlsx')
         return render(request, 'seminars_view.html', {'user': user, 'table': table})
     else:
         return redirect('/login')
@@ -279,6 +344,34 @@ def other_seminars_view(request, user):
         so.exclude = ('edit', 'delete')
         RequestConfig(request).configure(wo)
         table = {'ca': ca, 'sa': sa, 'wa': wa, 'tpa': tpa, 'co': co, 'wo': wo, 'so': so}
+        export_format_ca = request.GET.get('sci_export', None)
+        export_format_sa = request.GET.get('ps_export', None)
+        export_format_wa = request.GET.get('unp_export', None)
+        export_format_tpa = request.GET.get('oj_export', None)
+        export_format_co = request.GET.get('sci_export', None)
+        export_format_wo = request.GET.get('ps_export', None)
+        export_format_so = request.GET.get('unp_export', None)
+        if TableExport.is_valid_format(export_format_ca):
+            exporter = TableExport(export_format_ca, ca, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_CA.xlsx')
+        if TableExport.is_valid_format(export_format_sa):
+            exporter = TableExport(export_format_sa, sa, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_SA.xlsx')
+        if TableExport.is_valid_format(export_format_wa):
+            exporter = TableExport(export_format_wa, wa, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_WA.xlsx')
+        if TableExport.is_valid_format(export_format_tpa):
+            exporter = TableExport(export_format_tpa, tpa, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_TPA.xlsx')
+        if TableExport.is_valid_format(export_format_co):
+            exporter = TableExport(export_format_co, co, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_CO.xlsx')
+        if TableExport.is_valid_format(export_format_wo):
+            exporter = TableExport(export_format_wo, wo, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_WO.xlsx')
+        if TableExport.is_valid_format(export_format_so):
+            exporter = TableExport(export_format_so, so, exclude_columns=('edit', 'delete'))
+            return exporter.response(filename=str(user) + '_SO.xlsx')
         user = request.user
         return render(request, 'other_seminars_view.html', {'user': user, 'table': table})
     else:
@@ -405,13 +498,16 @@ def delete_seminars(request, sem_type, code, pk):
         return redirect('/seminars')
 
 
-def journals_filter_view(request):
+def journals_filter_view(request, user=None):
     if request.method == 'POST':
         form = JournalsFilterForm(request.POST)
         if form.is_valid():
             options = form.cleaned_data.get('selections')
             serve_filter_forms(request, options)
-            return redirect('/papers/filter/form')
+            if user is not None:
+                return redirect('/' + user + '/papers/filter/form')
+            else:
+                return redirect('/papers/filter/form')
 
     else:
         filter_form = JournalsFilterForm()
@@ -433,9 +529,27 @@ def seminars_filter_view(request):
     return render(request, 'seminars_filter_view.html', {'form': form})
 
 
-def papers_filter_form_view(request):
+def papers_filter_form_view(request, user=None):
+    global exporter
+    if user is not None:
+        userObj = User.objects.get(username=user)
+    else:
+        userObj = request.user
     forms = {}
     tables = {}
+    export_format_sci = request.GET.get('sci_export', None)
+    if export_format_sci is not None:
+        return exporter.response(filename=str(userObj) + '_SCI.xlsx')
+    export_format_up = request.GET.get('up_export', None)
+    if export_format_up is not None:
+        return exporter.response(filename=str(userObj) + '_UNP.xlsx')
+    export_format_ps = request.GET.get('ps_export', None)
+    if export_format_ps is not None:
+        return exporter.response(filename=str(userObj) + '_PS.xlsx')
+    export_format_oj = request.GET.get('oj_export', None)
+    if export_format_oj is not None:
+        return exporter.response(filename=str(userObj) + '_OJ.xlsx')
+
     if request.method == 'POST':
         if request.session['sci']:
             authors = request.POST.get('sci-authors')
@@ -443,40 +557,55 @@ def papers_filter_form_view(request):
             name = request.POST.get('sci-name')
             paperTitle = request.POST.get('sci-paperTitle')
             year = request.POST.get('sci-year1')
-            qs = getPapersQuerySet(SCIJournals, authors, corresAuthors, paperTitle, name, year)
+            obj = SCIJournals.objects.filter(user=userObj)
+            qs = getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year)
             sciTable = SCITable(qs)
             RequestConfig(request).configure(sciTable)
             tables['sciTable'] = sciTable
+            exporter = TableExport('xlsx', sciTable, exclude_columns=('edit', 'delete'))
+
         if request.session['ups']:
             authors = request.POST.get('upd-authors')
             corresAuthors = request.POST.get('ups-corresAuthors')
             name = request.POST.get('ups-name')
             paperTitle = request.POST.get('ups-paperTitle')
             year = request.POST.get('ups-year1')
-            qs = getPapersQuerySet(UnpaidScopus, authors, corresAuthors, paperTitle, name, year)
+            obj = UnpaidScopus.objects.filter(user=userObj)
+            qs = getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year)
             upsTable = UnpaidScopusTable(qs)
             RequestConfig(request).configure(upsTable)
             tables['upsTable'] = upsTable
+            exporter = TableExport('xlsx', upsTable, exclude_columns=('edit', 'delete'))
+
         if request.session['ps']:
             authors = request.POST.get('ps-authors')
             corresAuthors = request.POST.get('ps-corresAuthors')
             name = request.POST.get('ps-name')
             paperTitle = request.POST.get('ps-paperTitle')
             year = request.POST.get('ps-year1')
-            qs = getPapersQuerySet(PaidScopus, authors, corresAuthors, paperTitle, name, year)
+            obj = PaidScopus.objects.filter(user=userObj)
+            qs = getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year)
             psTable = PaidScopusTable(qs)
             RequestConfig(request).configure(psTable)
             tables['psTable'] = psTable
+            exporter = TableExport('xlsx', psTable, exclude_columns=('edit', 'delete'))
+
         if request.session['o']:
             authors = request.POST.get('o-authors')
             corresAuthors = request.POST.get('o-corresAuthors')
             name = request.POST.get('o-name')
             paperTitle = request.POST.get('o-paperTitle')
             year = request.POST.get('o-year1')
-            qs = getPapersQuerySet(OtherJournals, authors, corresAuthors, paperTitle, name, year)
+            obj = OtherJournals.objects.filter(user=userObj)
+            qs = getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year)
             oTable = OtherJournalTable(qs)
             RequestConfig(request).configure(oTable)
             tables['oTable'] = oTable
+            exporter = TableExport('xlsx', oTable, exclude_columns=('edit', 'delete'))
+
+        if user is not None:
+            for table in tables:
+                tables[table].exclude = ('edit', 'delete')
         return render(request, 'filtered_papers_view.html', {'tables': tables})
     else:
         if request.session['sci']:
@@ -585,4 +714,4 @@ def getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
         Y = [int(year)]
         q = q | Q(year__icontains=Y[0])
     print(q)
-    return obj.objects.filter(q)
+    return obj.filter(q)

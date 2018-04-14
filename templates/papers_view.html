@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load render_table from django_tables2 %}
+{% load querystring from django_tables2 %}
 {% block content %}
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
@@ -43,6 +44,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <div style="margin-left: -295%">
+                                        <A href="{% querystring 'sci_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Unpaid Scopus</legend>
@@ -56,6 +62,11 @@
                                     </div>
                                 </div>
                             </div>
+                             <div style="margin-left: -295%">
+                                        <A href="{% querystring 'unp_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Paid Scopus</legend>
@@ -69,6 +80,11 @@
                                     </div>
                                 </div>
                             </div>
+                             <div style="margin-left: -295%">
+                                        <A href="{% querystring 'ps_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Other Journals</legend>
@@ -81,6 +97,10 @@
                                            class="btn btn-sm btn-success fa fa-plus "> Add Paper</A>
                                     </div>
                                 </div>
+                            </div>
+                             <div style="margin-left: -295%">
+                                        <A href="{% querystring 'oj_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
                             </div>
                             <br>
                             <br>

@@ -43,6 +43,7 @@ class SCITable(tables.Table):
         return mark_safe(
             '<a href=' + reverse("delete_papers",
                                  args=[paper_type, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+    export_formats = ['csv', 'xls', 'xlsx']
 
     class Meta:
         model = SCIJournals
