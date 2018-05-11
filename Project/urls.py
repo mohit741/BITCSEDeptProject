@@ -41,5 +41,8 @@ urlpatterns = [
     path('seminars/add/<slug:sem_type>/code=<int:code>', views.add_seminars, name='add_seminars'),
     path('seminars/<slug:sem_type>/code=<int:code>/<int:pk>/edit', views.edit_seminars, name='edit_seminars'),
     path('seminars/filter/', views.seminars_filter_view, name='seminars_filter_view'),
+    path('seminars/filter/form', views.seminars_filter_form_view, name='seminars_filter_form_view'),
+    path('<slug:user>/seminars/filter/', views.seminars_filter_view, name='other_seminars_filter_view'),
+    path('<slug:user>/seminars/filter/form', views.seminars_filter_form_view, name='seminars_filter_form_view'),
     path('seminars/<slug:sem_type>/code=<int:code>/<int:pk>/delete', views.delete_seminars, name='delete_seminars'),
 ]

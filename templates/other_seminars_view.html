@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% load render_table from django_tables2 %}
+{% load querystring from django_tables2 %}
 {% block content %}
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style_profile.css' %}" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     {% if user.is_authenticated %}
 
         <div class="container">
@@ -23,9 +23,10 @@
                             <A href="{% url 'show_profile' %}" data-toggle="tooltip" type="button"
                             class="btn btn-sm btn-success fa fa-arrow-left" style="margin-left: 20%"> Go Back</A>
                             <br>
-                            <A href="{% url 'filter_view' %}" data-toggle="tooltip" type="button"
-                            class="pull-left btn btn-sm btn-success fa fa-search" style="margin-left: -260%"> Filter Data</A>
+                            <A href="{% url 'other_seminars_filter_view' user=other %}" data-toggle="tooltip" type="button"
+                            class="pull-left btn btn-sm btn-success fa fa-search" style="margin-left: -295%"> Filter Data</A>
                             </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                             <legend>Conferences Attended</legend>
@@ -35,6 +36,11 @@
                                     </div>
                                 </div>
                             </div>
+							<div style="margin-left: -295%">
+                                        <A href="{% querystring 'ca_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Seminars Attended</legend>
@@ -44,6 +50,11 @@
                                     </div>
                                 </div>
                             </div>
+							<div style="margin-left: -295%">
+                                        <A href="{% querystring 'sa_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Workshops Attended</legend>
@@ -53,6 +64,11 @@
                                     </div>
                                 </div>
                             </div>
+							<div style="margin-left: -295%">
+                                        <A href="{% querystring 'wa_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Training Programs Attended</legend>
@@ -62,6 +78,11 @@
                                     </div>
                                 </div>
                             </div>
+							<div style="margin-left: -295%">
+                                        <A href="{% querystring 'tpa_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
+                            </div>
+                            <br>
                             <br>
                              <div class="container" style="margin-left: -300%">
                                 <legend>Conferences Organised</legend>
@@ -71,6 +92,11 @@
                                     </div>
                                 </div>
                             </div>
+							<div style="margin-left: -295%">
+                                        <A href="{% querystring 'co_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Workshops Organised</legend>
@@ -80,6 +106,11 @@
                                     </div>
                                 </div>
                             </div>
+							<div style="margin-left: -295%">
+                                        <A href="{% querystring 'wo_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
+                            </div>
+                            <br>
                             <br>
                             <div class="container" style="margin-left: -300%">
                                 <legend>Seminars Organised</legend>
@@ -89,6 +120,11 @@
                                     </div>
                                 </div>
                             </div>
+							<div style="margin-left: -295%">
+                                        <A href="{% querystring 'so_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
+                            </div>
+                            <br>
                             <br>
                             <br>
                         {% endblock childcontent %}

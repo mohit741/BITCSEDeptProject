@@ -3,10 +3,10 @@
 {% load render_table from django_tables2 %}
 {% load querystring from django_tables2 %}
 {% block content %}
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style_profile.css' %}" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     {% if user.is_authenticated %}
 
         <div class="container">
@@ -46,7 +46,7 @@
                             </div>
                             <div style="margin-left: -295%">
                                         <A href="{% querystring 'sci_export'='xlsx' %}" data-toggle="tooltip" type="button"
-                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls </A>
                             </div>
                             <br>
                             <br>
@@ -108,6 +108,5 @@
                     </div>
                 </div>
             </div>
-        </div>
     {% endif %}
 {% endblock content %}

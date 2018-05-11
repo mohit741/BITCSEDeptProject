@@ -24,77 +24,77 @@
                     <div>
                         {% block childcontent %}
                             <A href="{% url 'show_profile' %}" data-toggle="tooltip" type="button"
-                            class="btn btn-sm btn-success fa fa-arrow-left" style="margin-left: 20%"> Go Back</A>
+                               class="btn btn-sm btn-success fa fa-arrow-left" style="margin-left: 20%"> Go Back</A>
                             <br>
                             <A href="{% url 'journals_filter_view' %}" data-toggle="tooltip" type="button"
-                            class="pull-left btn btn-sm btn-success fa fa-search" style="margin-left: -293%"> Filter Data</A>
-                            </div>
+                               class="pull-left btn btn-sm btn-success fa fa-search" style="margin-left: -293%"> Filter
+                                Data</A>
                             <br>
                             <br>
                             <br>
                             {% if tables.sciTable.data|length > 0 %}
-                            <div class="container" style="margin-left: -300%">
-                                <legend>SCI Journals</legend>
-                                <div class="row">
-                                    <div class="pull-left">
-                                        {% render_table tables.sciTable %}
+                                <div class="container" style="margin-left: -300%">
+                                    <legend>SCI Journals</legend>
+                                    <div class="row">
+                                        <div class="pull-left">
+                                            {% render_table tables.sciTable %}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                                 <div style="margin-left: -295%">
-                                        <A href="{% querystring 'sci_export'='xlsx' %}" data-toggle="tooltip" type="button"
-                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                                    <A href="{% querystring 'sci_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                       class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
                                 </div>
-                            <br>
+                                <br>
                                 <br>
                             {% endif %}
                             {% if tables.upsTable.data|length > 0 %}
-                            <div class="container" style="margin-left: -300%">
-                                <legend>Unpaid Scopus</legend>
-                                <div class="row">
-                                    <div class="pull-left">
-                                        {% render_table tables.upsTable %}
+                                <div class="container" style="margin-left: -300%">
+                                    <legend>Unpaid Scopus</legend>
+                                    <div class="row">
+                                        <div class="pull-left">
+                                            {% render_table tables.upsTable %}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                                 <div style="margin-left: -295%">
-                                        <A href="{% querystring 'unp_export'='xlsx' %}" data-toggle="tooltip" type="button"
-                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                                <div style="margin-left: -295%">
+                                    <A href="{% querystring 'unp_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                       class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
                                 </div>
                                 <br>
-                            <br>
+                                <br>
                             {% endif %}
                             {% if tables.psTable.data|length > 0 %}
-                            <div class="container" style="margin-left: -300%">
-                                <legend>Paid Scopus</legend>
-                                <div class="row">
-                                    <div class="pull-left">
-                                        {% render_table tables.psTable %}
+                                <div class="container" style="margin-left: -300%">
+                                    <legend>Paid Scopus</legend>
+                                    <div class="row">
+                                        <div class="pull-left">
+                                            {% render_table tables.psTable %}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                                div style="margin-left: -295%">
-                                        <A href="{% querystring 'ps_export'='xlsx' %}" data-toggle="tooltip" type="button"
-                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                                <div style="margin-left: -295%">
+                                    <A href="{% querystring 'ps_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                       class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
                                 </div>
                                 <br>
-                            <br>
+                                <br>
                             {% endif %}
                             {% if tables.oTable.data|length > 0 %}
-                            <div class="container" style="margin-left: -300%">
-                                <legend>Other Journals</legend>
-                                <div class="row">
-                                    <div class="pull-left">
-                                        {% render_table tables.oTable %}
+                                <div class="container" style="margin-left: -300%">
+                                    <legend>Other Journals</legend>
+                                    <div class="row">
+                                        <div class="pull-left">
+                                            {% render_table tables.oTable %}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                                div style="margin-left: -295%">
-                                        <A href="{% querystring 'oj_export'='xlsx' %}" data-toggle="tooltip" type="button"
-                                           class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
+                                <div style="margin-left: -295%">
+                                    <A href="{% querystring 'oj_export'='xlsx' %}" data-toggle="tooltip" type="button"
+                                       class="btn btn-sm btn-success fa fa-arrow-down "> Export as xls</A>
                                 </div>
                                 <br>
-                            <br>
+                                <br>
                             {% endif %}
                         {% endblock childcontent %}
                     </div>

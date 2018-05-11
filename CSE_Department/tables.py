@@ -16,7 +16,7 @@ class UserTable(tables.Table):
 
     class Meta:
         model = Profile
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'user',
             'name',
@@ -47,7 +47,7 @@ class SCITable(tables.Table):
 
     class Meta:
         model = SCIJournals
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'paperTitle',
@@ -80,7 +80,7 @@ class UnpaidScopusTable(tables.Table):
 
     class Meta:
         model = UnpaidScopus
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'paperTitle',
@@ -113,7 +113,7 @@ class PaidScopusTable(tables.Table):
 
     class Meta:
         model = PaidScopus
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'paperTitle',
@@ -146,7 +146,7 @@ class OtherJournalTable(tables.Table):
 
     class Meta:
         model = OtherJournals
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'paperTitle',
@@ -181,7 +181,7 @@ class ConferencesAttendedTable(tables.Table):
 
     class Meta:
         model = ConferencesAttended
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'paperTitle',
@@ -214,7 +214,7 @@ class SeminarsAttendedTable(tables.Table):
 
     class Meta:
         model = SeminarsAttended
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'paperTitle',
@@ -247,7 +247,7 @@ class WorkshopsAttendedTable(tables.Table):
 
     class Meta:
         model = WorkshopsAttended
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'place',
@@ -278,7 +278,7 @@ class TrainingProgAttendedTable(tables.Table):
 
     class Meta:
         model = TrainingProgAttended
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'place',
@@ -309,7 +309,7 @@ class ConferencesOrgTable(tables.Table):
 
     class Meta:
         model = ConferencesOrg
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'role',
@@ -341,7 +341,7 @@ class WorkshopsOrgTable(tables.Table):
 
     class Meta:
         model = WorkshopsOrg
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'role',
@@ -373,7 +373,7 @@ class SeminarsOrgTable(tables.Table):
 
     class Meta:
         model = SeminarsOrg
-        template_name = 'django_tables2/bootstrap-responsive.html'
+        template_name = 'bootstrap-responsive.html'
         fields = (
             'name',
             'role',

@@ -268,7 +268,7 @@ def delete_papers(request, paper_type, pk):
         return redirect('/papers')
 
 
-def seminars_view(request, ):
+def seminars_view(request):
     if request.user.is_authenticated:
         user = request.user
         ca = ConferencesAttendedTable(ConferencesAttended.objects.filter(user=user))
@@ -321,6 +321,7 @@ def seminars_view(request, ):
 
 def other_seminars_view(request, user):
     if request.user.is_authenticated and request.user.is_staff:
+        other = user
         user = User.objects.get(username=user)
         ca = ConferencesAttendedTable(ConferencesAttended.objects.filter(user=user))
         ca.exclude = ('edit', 'delete')
@@ -344,13 +345,13 @@ def other_seminars_view(request, user):
         so.exclude = ('edit', 'delete')
         RequestConfig(request).configure(wo)
         table = {'ca': ca, 'sa': sa, 'wa': wa, 'tpa': tpa, 'co': co, 'wo': wo, 'so': so}
-        export_format_ca = request.GET.get('sci_export', None)
-        export_format_sa = request.GET.get('ps_export', None)
-        export_format_wa = request.GET.get('unp_export', None)
-        export_format_tpa = request.GET.get('oj_export', None)
-        export_format_co = request.GET.get('sci_export', None)
-        export_format_wo = request.GET.get('ps_export', None)
-        export_format_so = request.GET.get('unp_export', None)
+        export_format_ca = request.GET.get('ca_export', None)
+        export_format_sa = request.GET.get('sa_export', None)
+        export_format_wa = request.GET.get('wa_export', None)
+        export_format_tpa = request.GET.get('tpa_export', None)
+        export_format_co = request.GET.get('co_export', None)
+        export_format_wo = request.GET.get('wo_export', None)
+        export_format_so = request.GET.get('so_export', None)
         if TableExport.is_valid_format(export_format_ca):
             exporter = TableExport(export_format_ca, ca, exclude_columns=('edit', 'delete'))
             return exporter.response(filename=str(user) + '_CA.xlsx')
@@ -373,7 +374,7 @@ def other_seminars_view(request, user):
             exporter = TableExport(export_format_so, so, exclude_columns=('edit', 'delete'))
             return exporter.response(filename=str(user) + '_SO.xlsx')
         user = request.user
-        return render(request, 'other_seminars_view.html', {'user': user, 'table': table})
+        return render(request, 'other_seminars_view.html', {'user': user, 'table': table, 'other': other})
     else:
         return redirect('/login')
 
@@ -515,20 +516,23 @@ def journals_filter_view(request, user=None):
     return render(request, 'journals_filter_view.html', {'form': form})
 
 
-def seminars_filter_view(request):
+def seminars_filter_view(request, user=None):
     if request.method == 'POST':
         form = SeminarsFilterForm(request.POST)
         if form.is_valid():
             options = form.cleaned_data.get('selections')
-            forms = serve_filter_forms(options)
-            request.sessions['paper_filter_form'] = forms
-            return redirect('/papers/filter/form')
+            serve_filter_forms(request, options)
+            if user is not None:
+                return redirect('/' + user + '/seminars/filter/form')
+            else:
+                return redirect('/seminars/filter/form')
     else:
         filter_form = SeminarsFilterForm()
         form = filter_form
     return render(request, 'seminars_filter_view.html', {'form': form})
 
 
+@login_required
 def papers_filter_form_view(request, user=None):
     global exporter
     if user is not None:
@@ -540,7 +544,7 @@ def papers_filter_form_view(request, user=None):
     export_format_sci = request.GET.get('sci_export', None)
     if export_format_sci is not None:
         return exporter.response(filename=str(userObj) + '_SCI.xlsx')
-    export_format_up = request.GET.get('up_export', None)
+    export_format_up = request.GET.get('unp_export', None)
     if export_format_up is not None:
         return exporter.response(filename=str(userObj) + '_UNP.xlsx')
     export_format_ps = request.GET.get('ps_export', None)
@@ -565,7 +569,7 @@ def papers_filter_form_view(request, user=None):
             exporter = TableExport('xlsx', sciTable, exclude_columns=('edit', 'delete'))
 
         if request.session['ups']:
-            authors = request.POST.get('upd-authors')
+            authors = request.POST.get('ups-authors')
             corresAuthors = request.POST.get('ups-corresAuthors')
             name = request.POST.get('ups-name')
             paperTitle = request.POST.get('ups-paperTitle')
@@ -623,6 +627,152 @@ def papers_filter_form_view(request, user=None):
     return render(request, 'papers_filter_form.html', {'forms': forms})
 
 
+@login_required
+def seminars_filter_form_view(request, user=None):
+    global exporter
+    if user is not None:
+        userObj = User.objects.get(username=user)
+    else:
+        userObj = request.user
+    forms = {}
+    tables = {}
+    export_format_ca = request.GET.get('ca_export', None)
+    if export_format_ca is not None:
+        return exporter.response(filename=str(userObj) + '_CA.xlsx')
+    export_format_sa = request.GET.get('sa_export', None)
+    if export_format_sa is not None:
+        return exporter.response(filename=str(userObj) + '_SA.xlsx')
+    export_format_wa = request.GET.get('wa_export', None)
+    if export_format_wa is not None:
+        return exporter.response(filename=str(userObj) + '_WA.xlsx')
+    export_format_tpa = request.GET.get('tpa_export', None)
+    if export_format_tpa is not None:
+        return exporter.response(filename=str(userObj) + '_TPA.xlsx')
+    export_format_co = request.GET.get('co_export', None)
+    if export_format_co is not None:
+        return exporter.response(filename=str(userObj) + '_CO.xlsx')
+    export_format_wo = request.GET.get('wo_export', None)
+    if export_format_wo is not None:
+        return exporter.response(filename=str(userObj) + '_WO.xlsx')
+    export_format_so = request.GET.get('so_export', None)
+    if export_format_so is not None:
+        return exporter.response(filename=str(userObj) + '_SO.xlsx')
+
+    if request.method == 'POST':
+        if request.session['ca']:
+            authors = request.POST.get('ca-authors')
+            place = request.POST.get('ca-place')
+            name = request.POST.get('ca-name')
+            paperTitle = request.POST.get('ca-paperTitle')
+            orgIns = request.POST.get('ca-orgInstitute')
+            obj = ConferencesAttended.objects.filter(user=userObj)
+            qs = getSeminarsQuerySet(obj, authors, orgIns, paperTitle, name, place, None, None)
+            caTable = ConferencesAttendedTable(qs)
+            RequestConfig(request).configure(caTable)
+            tables['caTable'] = caTable
+            exporter = TableExport('xlsx', caTable, exclude_columns=('edit', 'delete'))
+
+        if request.session['sa']:
+            authors = request.POST.get('sa-authors')
+            place = request.POST.get('sa-place')
+            name = request.POST.get('sa-name')
+            paperTitle = request.POST.get('sa-paperTitle')
+            orgIns = request.POST.get('sa-orgInstitute')
+            obj = SeminarsAttended.objects.filter(user=userObj)
+            qs = getSeminarsQuerySet(obj, authors, orgIns, paperTitle, name, place, None, None)
+            saTable = SeminarsAttendedTable(qs)
+            RequestConfig(request).configure(saTable)
+            tables['saTable'] = saTable
+            exporter = TableExport('xlsx', saTable, exclude_columns=('edit', 'delete'))
+
+        if request.session['wa']:
+            place = request.POST.get('wa-place')
+            name = request.POST.get('wa-name')
+            orgIns = request.POST.get('wa-orgInstitute')
+            obj = WorkshopsAttended.objects.filter(user=userObj)
+            qs = getSeminarsQuerySet(obj, None, orgIns, None, name, place, None, None)
+            waTable = WorkshopsAttendedTable(qs)
+            RequestConfig(request).configure(waTable)
+            tables['waTable'] = waTable
+            exporter = TableExport('xlsx', waTable, exclude_columns=('edit', 'delete'))
+
+        if request.session['tpa']:
+            place = request.POST.get('tpa-place')
+            name = request.POST.get('tpa-name')
+            orgIns = request.POST.get('tpa-orgInstitute')
+            obj = TrainingProgAttended.objects.filter(user=userObj)
+            qs = getSeminarsQuerySet(obj, None, orgIns, None, name, place, None, None)
+            tpaTable = TrainingProgAttendedTable(qs)
+            RequestConfig(request).configure(tpaTable)
+            tables['tpaTable'] = tpaTable
+            exporter = TableExport('xlsx', tpaTable, exclude_columns=('edit', 'delete'))
+
+        if request.session['co']:
+            fundingAgency = request.POST.get('co-fundingAgency')
+            role = request.POST.get('co-role')
+            name = request.POST.get('co-name')
+            orgIns = request.POST.get('co-orgInstitute')
+            obj = ConferencesOrg.objects.filter(user=userObj)
+            qs = getSeminarsQuerySet(obj, None, orgIns, None, name, None, fundingAgency, role)
+            coTable = ConferencesOrgTable(qs)
+            RequestConfig(request).configure(coTable)
+            tables['coTable'] = coTable
+            exporter = TableExport('xlsx', coTable, exclude_columns=('edit', 'delete'))
+
+        if request.session['so']:
+            fundingAgency = request.POST.get('so-fundingAgency')
+            role = request.POST.get('so-role')
+            name = request.POST.get('so-name')
+            orgIns = request.POST.get('so-orgInstitute')
+            obj = SeminarsOrg.objects.filter(user=userObj)
+            qs = getSeminarsQuerySet(obj, None, orgIns, None, name, None, fundingAgency, role)
+            soTable = SeminarsOrgTable(qs)
+            RequestConfig(request).configure(soTable)
+            tables['soTable'] = soTable
+            exporter = TableExport('xlsx', soTable, exclude_columns=('edit', 'delete'))
+
+        if request.session['wo']:
+            fundingAgency = request.POST.get('wo-fundingAgency')
+            role = request.POST.get('wo-role')
+            name = request.POST.get('wo-name')
+            orgIns = request.POST.get('wo-orgInstitute')
+            obj = WorkshopsOrg.objects.filter(user=userObj)
+            qs = getSeminarsQuerySet(obj, None, orgIns, None, name, None, fundingAgency, role)
+            woTable = WorkshopsOrgTable(qs)
+            RequestConfig(request).configure(woTable)
+            tables['woTable'] = woTable
+            exporter = TableExport('xlsx', woTable, exclude_columns=('edit', 'delete'))
+
+        if user is not None:
+            for table in tables:
+                tables[table].exclude = ('edit', 'delete')
+        return render(request, 'filtered_seminars_view.html', {'tables': tables})
+
+    else:
+        if request.session['ca']:
+            ca = SemFilterForm(prefix='ca')
+            forms['ca'] = ca
+        if request.session['sa']:
+            sa = SemFilterForm(prefix='ca')
+            forms['sa'] = sa
+        if request.session['tpa']:
+            tpa = Sem2FilterForm(prefix='tpa')
+            forms['tpa'] = tpa
+        if request.session['wa']:
+            wa = Sem2FilterForm(prefix='wa')
+            forms['wa'] = wa
+        if request.session['co']:
+            co = Sem3FilterForm(prefix='co')
+            forms['co'] = co
+        if request.session['so']:
+            so = Sem3FilterForm(prefix='so')
+            forms['so'] = so
+        if request.session['wo']:
+            wo = Sem3FilterForm(prefix='wo')
+            forms['wo'] = wo
+    return render(request, 'seminars_filter_form.html', {'forms': forms})
+
+
 def serve_filter_forms(request, options):
     print(options)
     if '0' in options:
@@ -642,13 +792,13 @@ def serve_filter_forms(request, options):
     else:
         request.session['o'] = False
     if '4' in options:
-        request.session['sa'] = True
-    else:
-        request.session['ss'] = False
-    if '5' in options:
         request.session['ca'] = True
     else:
         request.session['ca'] = False
+    if '5' in options:
+        request.session['sa'] = True
+    else:
+        request.session['sa'] = False
     if '6' in options:
         request.session['wa'] = True
     else:
@@ -714,4 +864,44 @@ def getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
         Y = [int(year)]
         q = q | Q(year__icontains=Y[0])
     print(q)
+    return obj.filter(q)
+
+
+def getSeminarsQuerySet(obj, authors, orgIns, paperTitle, name, place, fundingAgency, role):
+    q = Q(name__icontains='dummy')
+    if authors is not None:
+        al = authors.split(' ')
+        if al[0] != '':
+            for i in al:
+                q = q | Q(authors__icontains=i)
+    if orgIns is not None:
+        ca = orgIns.split(' ')
+        if ca[0] != '':
+            for i in ca:
+                q = q | Q(orgInstitute__icontains=i)
+    if paperTitle is not None:
+        n = paperTitle.split(' ')
+        if n[0] != '':
+            for i in n:
+                q = q | Q(paperTitle__icontains=i)
+    if name is not None:
+        pt = name.split(' ')
+        if pt[0] != '':
+            for i in pt:
+                q = q | Q(name__icontains=i)
+    if place is not None:
+        pt = place.split(' ')
+        if pt[0] != '':
+            for i in pt:
+                q = q | Q(place__icontains=i)
+    if fundingAgency is not None:
+        pt = fundingAgency.split(' ')
+        if pt[0] != '':
+            for i in pt:
+                q = q | Q(fundingAgency__icontains=i)
+    if role is not None:
+        pt = role.split(' ')
+        if pt[0] != '':
+            for i in pt:
+                q = q | Q(role__icontains=i)
     return obj.filter(q)

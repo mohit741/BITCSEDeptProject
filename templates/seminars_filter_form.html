@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style_profile.css' %}" rel="stylesheet">
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     {% if user.is_authenticated %}
@@ -21,23 +21,51 @@
                     <div>
                         {% block childcontent %}
                             <p style="margin-left: -293%" class="pull-left text-info large">
-                                Enter data in given forms to display specific papers.
+                                Enter data in given forms to display specific seminars/conferences/workshops.
                             </p>
                             <div class="container" style="margin-left: -300%">
                                 <div class="row">
                                     <div class="col-md-10 ">
                                         <form class="form-horizontal" method="POST">{% csrf_token %}
-                                            {% if forms.sci %}
+                                            {% if forms.ca %}
                                             <fieldset>
                                                     <legend>
-                                                        SCI Journals
+                                                        Conferences Attended
                                                     </legend>
-                                                    {% for error in forms.sci.non_field_errors %}
+                                                    {% for error in forms.ca.non_field_errors %}
                                                         <div class="form-group has-errors text-danger small">
                                                             {{ error }}
                                                         </div>
                                                     {% endfor %}
-                                                    {% for field in forms.sci %}
+                                                    {% for field in forms.ca %}
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label"
+                                                                   for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+
+                                                            <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    {{ field }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group has-errors text-danger small">
+                                                                {{ field.errors }}
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                            </fieldset>
+                                                <br>
+                                            {%  endif %}
+                                            {% if forms.sa %}
+                                            <fieldset>
+                                                    <legend>
+                                                        Seminars Attended
+                                                    </legend>
+                                                    {% for error in forms.sa.non_field_errors %}
+                                                        <div class="form-group has-errors text-danger small">
+                                                            {{ error }}
+                                                        </div>
+                                                    {% endfor %}
+                                                    {% for field in forms.sa %}
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label"
                                                                    for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
@@ -55,17 +83,17 @@
                                                 </fieldset>
                                                 <br>
                                             {%  endif %}
-                                            {% if forms.ups %}
+                                            {% if forms.wa %}
                                             <fieldset>
                                                     <legend>
-                                                        Unpaid Scopus
+                                                        Workshops Attended
                                                     </legend>
-                                                    {% for error in forms.ups.non_field_errors %}
+                                                    {% for error in forms.wa.non_field_errors %}
                                                         <div class="form-group has-errors text-danger small">
                                                             {{ error }}
                                                         </div>
                                                     {% endfor %}
-                                                    {% for field in forms.ups %}
+                                                    {% for field in forms.wa %}
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label"
                                                                    for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
@@ -83,17 +111,17 @@
                                                 </fieldset>
                                                 <br>
                                             {%  endif %}
-                                            {% if forms.ps %}
+                                            {% if forms.tpa %}
                                             <fieldset>
                                                     <legend>
-                                                        Paid Scopus
+                                                        Training Programs Attended
                                                     </legend>
-                                                    {% for error in forms.ps.non_field_errors %}
+                                                    {% for error in forms.tpa.non_field_errors %}
                                                         <div class="form-group has-errors text-danger small">
                                                             {{ error }}
                                                         </div>
                                                     {% endfor %}
-                                                    {% for field in forms.ps %}
+                                                    {% for field in forms.tpa %}
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label"
                                                                    for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
@@ -111,17 +139,73 @@
                                                 </fieldset>
                                                 <br>
                                             {%  endif %}
-                                            {% if forms.o %}
+                                            {% if forms.co %}
                                             <fieldset>
                                                     <legend>
-                                                        Others Journals
+                                                        Conferences Organised
                                                     </legend>
-                                                    {% for error in forms.o.non_field_errors %}
+                                                    {% for error in forms.co.non_field_errors %}
                                                         <div class="form-group has-errors text-danger small">
                                                             {{ error }}
                                                         </div>
                                                     {% endfor %}
-                                                    {% for field in forms.o %}
+                                                    {% for field in forms.co %}
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label"
+                                                                   for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+
+                                                            <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    {{ field }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group has-errors text-danger small">
+                                                                {{ field.errors }}
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </fieldset>
+                                                <br>
+                                            {%  endif %}
+                                            {% if forms.so %}
+                                            <fieldset>
+                                                    <legend>
+                                                        Seminars Organised
+                                                    </legend>
+                                                    {% for error in forms.so.non_field_errors %}
+                                                        <div class="form-group has-errors text-danger small">
+                                                            {{ error }}
+                                                        </div>
+                                                    {% endfor %}
+                                                    {% for field in forms.so %}
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label"
+                                                                   for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+
+                                                            <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    {{ field }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group has-errors text-danger small">
+                                                                {{ field.errors }}
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </fieldset>
+                                                <br>
+                                            {%  endif %}
+                                            {% if forms.wo %}
+                                            <fieldset>
+                                                    <legend>
+                                                        Workshops Organised
+                                                    </legend>
+                                                    {% for error in forms.wo.non_field_errors %}
+                                                        <div class="form-group has-errors text-danger small">
+                                                            {{ error }}
+                                                        </div>
+                                                    {% endfor %}
+                                                    {% for field in forms.wo %}
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label"
                                                                    for="{{ field.id_for_label }}">{{ field.label_tag }}</label>

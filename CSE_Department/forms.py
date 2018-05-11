@@ -317,3 +317,31 @@ class SemFilterForm(forms.Form):
                             widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Place'}))
     orgInstitute = forms.CharField(required=False, label='Organising Institute', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Organising Institute'}))
+    authors = forms.CharField(required=False,
+                              widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Place'}))
+    paperTitle = forms.CharField(required=False,
+                                 widget=forms.TextInput(
+                                     attrs={'class': 'form-control', 'placeholder': 'Paper Title'}))
+
+
+class Sem2FilterForm(forms.Form):
+    name = forms.CharField(required=False,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
+    place = forms.CharField(required=False,
+                            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Place'}))
+    orgInstitute = forms.CharField(required=False, label='Organising Institute', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Organising Institute'}))
+
+
+class Sem3FilterForm(forms.Form):
+    name = forms.CharField(required=False,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
+    place = forms.CharField(required=False,
+                            widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Place'}))
+    orgInstitute = forms.CharField(required=False, label='Organising Institute', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Organising Institute'}))
+    fundingAgency = forms.CharField(required=False, label='Funding Agency',
+                                    widget=forms.TextInput(
+                                        attrs={'class': 'form-control', 'placeholder': 'Funding Agency'}))
+    role = forms.CharField(required=False,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Role'}))
