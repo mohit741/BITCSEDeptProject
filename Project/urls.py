@@ -19,6 +19,7 @@ from CSE_Department import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.login_view, name='start'),
     path('register/', views.register_user, name='register_user'),
     path('login/', views.login_view, name='login_view'),
     path('user_auth/', views.user_login, name='user_login'),

@@ -43,6 +43,7 @@ class SCITable(tables.Table):
         return mark_safe(
             '<a href=' + reverse("delete_papers",
                                  args=[paper_type, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+
     export_formats = ['csv', 'xls', 'xlsx']
 
     class Meta:
@@ -369,7 +370,8 @@ class SeminarsOrgTable(tables.Table):
         sem_type = 'Seminars_Organised'
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
-                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[sem_type, code,
+                                       record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = SeminarsOrg

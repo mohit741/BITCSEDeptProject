@@ -822,27 +822,27 @@ def serve_filter_forms(request, options):
 
 
 def getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
-    q = Q(authors__icontains='dummy')
+    q = Q(authors__icontains='')
     if authors is not None:
         al = authors.split(' ')
         if al[0] != '':
             for i in al:
-                q = q | Q(authors__icontains=i)
+                q = q & Q(authors__icontains=i)
     if corresAuthors is not None:
         ca = corresAuthors.split(' ')
         if ca[0] != '':
             for i in ca:
-                q = q | Q(corresAuthors__icontains=i)
+                q = q & Q(corresAuthors__icontains=i)
     if paperTitle is not None:
         n = paperTitle.split(' ')
         if n[0] != '':
             for i in n:
-                q = q | Q(paperTitle__icontains=i)
+                q = q & Q(paperTitle__icontains=i)
     if name is not None:
         pt = name.split(' ')
         if pt[0] != '':
             for i in pt:
-                q = q | Q(name__icontains=i)
+                q = q & Q(name__icontains=i)
     if ',' in year and year is not None:
         y = year.split(',')
         print(y)
@@ -851,7 +851,7 @@ def getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
             Y.append(int(i))
         if Y[0] != '':
             for i in Y:
-                q = q | Q(year__icontains=i)
+                q = q & Q(year__icontains=i)
     elif '-' in year and year is not None:
         y = year.split('-')
         print(y)
@@ -859,49 +859,49 @@ def getPapersQuerySet(obj, authors, corresAuthors, paperTitle, name, year):
         for i in y:
             Y.append(i)
         if len(Y) > 1:
-            q = q | (Q(year__gte=Y[0]) & Q(year__lte=Y[1]))
+            q = q & (Q(year__gte=Y[0]) & Q(year__lte=Y[1]))
     elif len(year) == 4:
         Y = [int(year)]
-        q = q | Q(year__icontains=Y[0])
+        q = q & Q(year__icontains=Y[0])
     print(q)
     return obj.filter(q)
 
 
 def getSeminarsQuerySet(obj, authors, orgIns, paperTitle, name, place, fundingAgency, role):
-    q = Q(name__icontains='dummy')
+    q = Q(name__icontains='')
     if authors is not None:
         al = authors.split(' ')
         if al[0] != '':
             for i in al:
-                q = q | Q(authors__icontains=i)
+                q = q & Q(authors__icontains=i)
     if orgIns is not None:
         ca = orgIns.split(' ')
         if ca[0] != '':
             for i in ca:
-                q = q | Q(orgInstitute__icontains=i)
+                q = q & Q(orgInstitute__icontains=i)
     if paperTitle is not None:
         n = paperTitle.split(' ')
         if n[0] != '':
             for i in n:
-                q = q | Q(paperTitle__icontains=i)
+                q = q & Q(paperTitle__icontains=i)
     if name is not None:
         pt = name.split(' ')
         if pt[0] != '':
             for i in pt:
-                q = q | Q(name__icontains=i)
+                q = q & Q(name__icontains=i)
     if place is not None:
         pt = place.split(' ')
         if pt[0] != '':
             for i in pt:
-                q = q | Q(place__icontains=i)
+                q = q & Q(place__icontains=i)
     if fundingAgency is not None:
         pt = fundingAgency.split(' ')
         if pt[0] != '':
             for i in pt:
-                q = q | Q(fundingAgency__icontains=i)
+                q = q & Q(fundingAgency__icontains=i)
     if role is not None:
         pt = role.split(' ')
         if pt[0] != '':
             for i in pt:
-                q = q | Q(role__icontains=i)
+                q = q & Q(role__icontains=i)
     return obj.filter(q)

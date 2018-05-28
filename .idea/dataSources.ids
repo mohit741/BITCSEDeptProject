@@ -164,6 +164,8 @@
       <primary-key columns="id"/>
       <exported-key name="#FAKE_auth_group_permissions_2" table="auth_group_permissions" schema="" catalog="" columns="group_id"/>
       <exported-key name="#FAKE_auth_user_groups_1" table="auth_user_groups" schema="" catalog="" columns="group_id"/>
+      <exported-key name="#FAKE_auth_group_permissions_2" table="auth_group_permissions" schema="" catalog="" columns="group_id"/>
+      <exported-key name="#FAKE_auth_user_groups_1" table="auth_user_groups" schema="" catalog="" columns="group_id"/>
     </table>
     <table name="auth_group_permissions" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
@@ -183,6 +185,8 @@
       <column name="name" sqlType="VARCHAR(255)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_auth_permission_1" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_auth_group_permissions_1" table="auth_group_permissions" schema="" catalog="" columns="permission_id"/>
+      <exported-key name="#FAKE_auth_user_user_permissions_1" table="auth_user_user_permissions" schema="" catalog="" columns="permission_id"/>
       <exported-key name="#FAKE_auth_group_permissions_1" table="auth_group_permissions" schema="" catalog="" columns="permission_id"/>
       <exported-key name="#FAKE_auth_user_user_permissions_1" table="auth_user_user_permissions" schema="" catalog="" columns="permission_id"/>
       <index name="auth_permission_content_type_id_2f476e4b" unique="true" columns="content_type_id"/>
@@ -205,6 +209,17 @@
       <exported-key name="#FAKE_CSE_Department_conferencesorg_1" table="CSE_Department_conferencesorg" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_otherjournals_1" table="CSE_Department_otherjournals" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_paidscopus_1" table="CSE_Department_paidscopus" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_profile_1" table="CSE_Department_profile" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_scijournals_1" table="CSE_Department_scijournals" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_seminarsattended_1" table="CSE_Department_seminarsattended" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_seminarsorg_1" table="CSE_Department_seminarsorg" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_trainingprogattended_1" table="CSE_Department_trainingprogattended" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_unpaidscopus_1" table="CSE_Department_unpaidscopus" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_workshopsattended_1" table="CSE_Department_workshopsattended" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_workshopsorg_1" table="CSE_Department_workshopsorg" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_auth_user_user_permissions_2" table="auth_user_user_permissions" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_django_admin_log_1" table="django_admin_log" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_profile_1" table="CSE_Department_profile" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_scijournals_1" table="CSE_Department_scijournals" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_seminarsattended_1" table="CSE_Department_seminarsattended" schema="" catalog="" columns="user_id"/>
@@ -259,6 +274,8 @@
       <column name="app_label" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="model" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
+      <exported-key name="#FAKE_auth_permission_1" table="auth_permission" schema="" catalog="" columns="content_type_id"/>
+      <exported-key name="#FAKE_django_admin_log_2" table="django_admin_log" schema="" catalog="" columns="content_type_id"/>
       <exported-key name="#FAKE_auth_permission_1" table="auth_permission" schema="" catalog="" columns="content_type_id"/>
       <exported-key name="#FAKE_django_admin_log_2" table="django_admin_log" schema="" catalog="" columns="content_type_id"/>
       <index name="django_content_type_app_label_model_76bd3d3b_uniq" unique="true" columns="app_label,model"/>

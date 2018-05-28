@@ -71,17 +71,20 @@ class RegForm(forms.ModelForm):
 class PapersForm(forms.ModelForm):
     authors = forms.CharField(widget=forms.Textarea(
         attrs={'rows': 4, 'class': 'form-control', 'placeholder': 'Enter name of authors separated by comma'}))
-    corresAuthors = forms.CharField(label='Corresponding Authors', widget=forms.Textarea(
+    corresAuthors = forms.CharField(required=False, label='Corresponding Authors', widget=forms.Textarea(
         attrs={'rows': 4, 'class': 'form-control', 'placeholder': 'Enter name of authors separated by comma'}))
     paperTitle = forms.CharField(label='Paper Title',
                                  widget=forms.Textarea(
                                      attrs={'rows': 3, 'class': 'form-control', 'placeholder': 'Paper Title'}))
-    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
-    impactFac = forms.CharField(label='Impact Factor',
+    name = forms.CharField(required=False,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
+    impactFac = forms.CharField(required=False, label='Impact Factor',
                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Impact Factor'}))
-    volume = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Volume'}))
-    pp = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'PP'}))
-    year = forms.ChoiceField(label='Year', choices=YEAR_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    volume = forms.CharField(required=False,
+                             widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Volume'}))
+    pp = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'PP'}))
+    year = forms.ChoiceField(required=False, label='Year', choices=YEAR_CHOICES,
+                             widget=forms.Select(attrs={'class': 'form-control'}))
 
 
 class SCIForm(PapersForm):
@@ -150,11 +153,12 @@ class SemConForm(forms.ModelForm):
     paperTitle = forms.CharField(label='Paper Title',
                                  widget=forms.Textarea(
                                      attrs={'rows': 3, 'class': 'form-control', 'placeholder': 'Paper Title'}))
-    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
+    name = forms.CharField(required=False,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
     place = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Place'}))
-    orgInstitute = forms.CharField(label='Organising Institute', widget=forms.TextInput(
+    orgInstitute = forms.CharField(required=False, label='Organising Institute', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Organising Institute'}))
-    duration = forms.IntegerField(widget=forms.NumberInput(
+    duration = forms.IntegerField(required=False, widget=forms.NumberInput(
         attrs={'class': 'form-control'}))
 
 
@@ -189,7 +193,7 @@ class WorkshopAttendedForm(forms.ModelForm):
     place = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Place'}))
     orgInstitute = forms.CharField(label='Organising Institute', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Organising Institute'}))
-    duration = forms.IntegerField(widget=forms.NumberInput(
+    duration = forms.IntegerField(required=False, widget=forms.NumberInput(
         attrs={'class': 'form-control'}))
 
     class Meta:
@@ -207,7 +211,7 @@ class TPAttendedForm(forms.ModelForm):
     place = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Place'}))
     orgInstitute = forms.CharField(label='Organising Institute', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Organising Institute'}))
-    duration = forms.IntegerField(widget=forms.NumberInput(
+    duration = forms.IntegerField(required=False, widget=forms.NumberInput(
         attrs={'class': 'form-control'}))
 
     class Meta:
@@ -222,13 +226,13 @@ class TPAttendedForm(forms.ModelForm):
 
 class OrgForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
-    role = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
+    role = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}))
     orgInstitute = forms.CharField(label='Organising Institute', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Organising Institute'}))
-    fundingAgency = forms.CharField(label='Funding Agency',
+    fundingAgency = forms.CharField(required=False, label='Funding Agency',
                                     widget=forms.TextInput(
                                         attrs={'class': 'form-control', 'placeholder': 'Funding Agency'}))
-    duration = forms.IntegerField(widget=forms.NumberInput(
+    duration = forms.IntegerField(required=False, widget=forms.NumberInput(
         attrs={'class': 'form-control'}))
 
 
