@@ -220,6 +220,10 @@
       <exported-key name="#FAKE_auth_user_groups_2" table="auth_user_groups" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_auth_user_user_permissions_2" table="auth_user_user_permissions" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_django_admin_log_1" table="django_admin_log" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_conferencesattended_1" table="CSE_Department_conferencesattended" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_conferencesorg_1" table="CSE_Department_conferencesorg" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_otherjournals_1" table="CSE_Department_otherjournals" schema="" catalog="" columns="user_id"/>
+      <exported-key name="#FAKE_CSE_Department_paidscopus_1" table="CSE_Department_paidscopus" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_profile_1" table="CSE_Department_profile" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_scijournals_1" table="CSE_Department_scijournals" schema="" catalog="" columns="user_id"/>
       <exported-key name="#FAKE_CSE_Department_seminarsattended_1" table="CSE_Department_seminarsattended" schema="" catalog="" columns="user_id"/>

@@ -18,7 +18,7 @@
                 <div class="col-md-3  toppad  pull-right col-md-offset-5 ">
                     <A href="{% url 'show_profile' %}" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">Show Profile</A>
                     <A style="margin-left: 5% " href="{% url "logout_user" %}" data-toggle="tooltip" type="button"
-                       class="btn btn-sm btn-danger">Logout</A>
+                       class="confirmation btn btn-sm btn-danger">Logout</A>
                     <br>
 				</div>
 			</div>
@@ -51,13 +51,18 @@
                             <label class="col-md-4 control-label"></label>
 
                             <div class="col-md-4">
-                                <button type="submit" class="btn btn-success">Save</button>
-                                <a href="{% url 'update_profile' %}" class="btn btn-danger"
+                                <button type="submit" class="confirmation btn btn-success">Save</button>
+                                <a href="{% url 'update_profile' %}" class="confirmation btn btn-danger"
                                    style="margin-left:30px">Clear</a>
                             </div>
                         </div>
                     </fieldset>
                 </form>
+            <script type="text/javascript">
+                            $('.confirmation').on('click', function() {
+                                return confirm('Are you sure?');
+                            });
+            </script>
             </div>
         </div>
     </div>

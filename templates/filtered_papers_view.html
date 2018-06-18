@@ -14,7 +14,7 @@
                     <A href="{% url 'update_profile' %}" data-toggle="tooltip" type="button"
                        class="btn btn-sm btn-warning">Edit Profile</A>
                     <A style="margin-left: 5% " href="{% url "logout_user" %}" data-toggle="tooltip" type="button"
-                       class="btn btn-sm btn-danger">Logout</A>
+                       class="confirmation btn btn-sm btn-danger">Logout</A>
                     <br>
                     <br>
 
@@ -99,6 +99,11 @@
                                 </div>
                                 <br>
                                 <br>
+                                <script type="text/javascript">
+                            $('.confirmation').on('click', function() {
+                                return confirm('Are you sure?');
+                            });
+                            </script>
                             {% endif %}
                         {% endblock childcontent %}
                     </div>

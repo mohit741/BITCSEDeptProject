@@ -42,7 +42,8 @@ class SCITable(tables.Table):
         paper_type = 'SCI'
         return mark_safe(
             '<a href=' + reverse("delete_papers",
-                                 args=[paper_type, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[paper_type,
+                                       record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     export_formats = ['csv', 'xls', 'xlsx']
 
@@ -77,7 +78,7 @@ class UnpaidScopusTable(tables.Table):
         paper_type = 'unpaid_scopus'
         return mark_safe(
             '<a href=' + reverse("delete_papers",
-                                 args=[paper_type, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[paper_type, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = UnpaidScopus
@@ -110,7 +111,7 @@ class PaidScopusTable(tables.Table):
         paper_type = 'paid_scopus'
         return mark_safe(
             '<a href=' + reverse("delete_papers",
-                                 args=[paper_type, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[paper_type, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = PaidScopus
@@ -143,7 +144,7 @@ class OtherJournalTable(tables.Table):
         paper_type = 'other_journals'
         return mark_safe(
             '<a href=' + reverse("delete_papers",
-                                 args=[paper_type, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[paper_type, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = OtherJournals
@@ -178,7 +179,7 @@ class ConferencesAttendedTable(tables.Table):
         code = 0
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
-                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[sem_type, code, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = ConferencesAttended
@@ -211,7 +212,7 @@ class SeminarsAttendedTable(tables.Table):
         sem_type = 'Seminars_Attended'
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
-                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[sem_type, code, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = SeminarsAttended
@@ -244,7 +245,7 @@ class WorkshopsAttendedTable(tables.Table):
         sem_type = 'Workshops_Attended'
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
-                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[sem_type, code, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = WorkshopsAttended
@@ -275,7 +276,7 @@ class TrainingProgAttendedTable(tables.Table):
         sem_type = 'Train_Programs_Attended'
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
-                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[sem_type, code, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = TrainingProgAttended
@@ -306,7 +307,7 @@ class ConferencesOrgTable(tables.Table):
         sem_type = 'Conferences_Organised'
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
-                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[sem_type, code, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = ConferencesOrg
@@ -338,7 +339,7 @@ class WorkshopsOrgTable(tables.Table):
         sem_type = 'Workshops_Organised'
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
-                                 args=[sem_type, code, record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                 args=[sem_type, code, record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = WorkshopsOrg
@@ -371,7 +372,7 @@ class SeminarsOrgTable(tables.Table):
         return mark_safe(
             '<a href=' + reverse("delete_seminars",
                                  args=[sem_type, code,
-                                       record.pk]) + ' class="btn btn-sm btn-danger">Delete</a>')
+                                       record.pk]) + ' class="confirmation btn btn-sm btn-danger">Delete</a>')
 
     class Meta:
         model = SeminarsOrg
