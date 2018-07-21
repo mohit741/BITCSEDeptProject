@@ -10,8 +10,8 @@ from .tables import *
 from django_tables2 import RequestConfig
 from django_tables2.export.export import TableExport
 
-#t = SCITable(SCIJournals.objects.all())
-#exporter = TableExport('csv', t, exclude_columns=('edit', 'delete'))
+t = SCITable(SCIJournals.objects.all())
+exporter = TableExport('csv', t, exclude_columns=('edit', 'delete'))
 
 
 # Create your views here.

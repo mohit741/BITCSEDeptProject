@@ -3,7 +3,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .managers import ProfileManager
 
 
 # Create your models here.
@@ -14,7 +13,6 @@ class Profile(models.Model):
     dept = models.CharField(max_length=20, default='CSE', verbose_name='Department')
     phone = models.CharField(max_length=15, default='1234567890', verbose_name='Phone')
     desgn = models.CharField(max_length=20, default='staff', verbose_name='Designation')
-    objects = ProfileManager()
 
     @property
     def username(self):
@@ -89,7 +87,7 @@ class ConferencesAttended(models.Model):
     authors = models.CharField(max_length=100)
     paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()
+    total_duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -99,7 +97,7 @@ class SeminarsAttended(models.Model):
     authors = models.CharField(max_length=100)
     paperTitle = models.CharField(max_length=50, verbose_name='Paper Title')
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()
+    total_duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -107,7 +105,7 @@ class SeminarsAttended(models.Model):
 
 class WorkshopsAttended(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()
+    total_duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -115,7 +113,7 @@ class WorkshopsAttended(models.Model):
 
 class TrainingProgAttended(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()
+    total_duration = models.IntegerField()
     place = models.CharField(max_length=100)
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -123,7 +121,7 @@ class TrainingProgAttended(models.Model):
 
 class ConferencesOrg(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()
+    total_duration = models.IntegerField()
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
@@ -132,7 +130,7 @@ class ConferencesOrg(models.Model):
 
 class WorkshopsOrg(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()
+    total_duration = models.IntegerField()
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
@@ -141,7 +139,7 @@ class WorkshopsOrg(models.Model):
 
 class SeminarsOrg(models.Model):
     name = models.CharField(max_length=50)
-    duration = models.IntegerField()
+    total_duration = models.IntegerField()
     orgInstitute = models.CharField(max_length=50, verbose_name='Organising Institute')
     fundingAgency = models.CharField(max_length=100, verbose_name='Funding Agency')
     role = models.CharField(max_length=50)
